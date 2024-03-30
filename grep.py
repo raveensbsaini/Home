@@ -12,16 +12,18 @@ def check(string,pattern,dict):
     return c
 if len(sys.argv) == 2:
     if sys.argv[1] != "--help":
+        count = 1
         for line in sys.stdin:
             pattern = sys.argv[1]
             d = {}
             if check(line,pattern,d):
+                print(Fore.BLUE + f"{count} ",end="")
                 for idx,value in enumerate(line):
                     if idx not in d:
                         print(Fore.BLACK+ value,end="")
                     else:
                         print(Fore.RED + value,end="")
-
+            count += 1
 if len(sys.argv) == 3:
     if sys.argv[0] == "grep.py":
         pattern = sys.argv[1]
@@ -32,7 +34,7 @@ if len(sys.argv) == 3:
             for i in file:
                 empty_dict = {}
                 if check(i,pattern,empty_dict):
-                    print(Fore.BLUE + f"{count}",end='')
+                    print(Fore.BLUE + f"{count} ",end='')
                     for idx,value in enumerate(i):
                         if idx not in empty_dict:
                             print(Fore.BLACK+ value,end="")
