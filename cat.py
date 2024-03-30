@@ -7,4 +7,5 @@ else:
     file = open(filepath,"r")
     for i in file:
         print(i)
+    sys.stdout.flush()
     file.close()
