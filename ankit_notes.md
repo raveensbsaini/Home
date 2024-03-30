@@ -62,3 +62,12 @@
   python3 my_command.py | tee xyz.txt
   ```
 
+## head.py
+- [bug]: 
+```sh
+# Prints starting lines of some_file using following syntax
+cat some_file | head
+```
+
+## tail.py
+- Same issue as head
