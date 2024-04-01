@@ -1,6 +1,7 @@
 import os,sys
 from pathlib import Path
 from colorama import Fore, Back, Style
+print("This commands is made by Ravindra kumar saini")
 count = 1
 def check(string,pattern,dict):
     c = False
@@ -20,7 +21,7 @@ if len(sys.argv) == 2:
                 print(Fore.BLUE + f"{count} ",end="")
                 for idx,value in enumerate(line):
                     if idx not in d:
-                        print(Fore.BLACK+ value,end="")
+                        print(Fore.GREEN+ value,end="")
                     else:
                         print(Fore.RED + value,end="")
             count += 1
@@ -30,6 +31,7 @@ if len(sys.argv) == 3:
         cwd  = os.getcwd()
         filepath = cwd + "/" + sys.argv[2]
         count = 1
+        print(filepath)
         with open(filepath,"r") as file:
             for i in file:
                 empty_dict = {}
@@ -37,7 +39,7 @@ if len(sys.argv) == 3:
                     print(Fore.BLUE + f"{count} ",end='')
                     for idx,value in enumerate(i):
                         if idx not in empty_dict:
-                            print(Fore.BLACK+ value,end="")
+                            print(Fore.GREEN+ value,end="")
                         else:
                             print(Fore.RED + value,end="")
                 count += 1

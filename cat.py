@@ -6,6 +6,5 @@ else:
     filepath = cwd + "/" +sys.argv[1]
     file = open(filepath,"r")
     for i in file:
-        print(i)
-    sys.stdout.flush()
+        print(i,end="")
     file.close()
