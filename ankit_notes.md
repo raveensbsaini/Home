@@ -1,3 +1,56 @@
+# 2024-04-02 (Review)
+## head.py
+- [random trivia] reference `head` command has a default of initial 10 lines. And you can use `-n` to change that.
+  ```bash
+  head somefile.txt # prints 10 lines
+  head -n 100 somefile.txt # prints 100 lines
+  # or similarly
+  head --lines 100 somefile.txt # prints 100 lines
+  ```
+  - In CLI tools `-n` or `--lines` are known as `flags` (kind of like named arguments in python). And argument without any name are known as `positional`. Similar to python, `flags` should be used for optional values, i.e. user doesn't need to provide them, but he can. While `positional` values are generally required. This is not a fixed rule, since `grep` and `head` allow `positional` argument to be optional (it'll read stdin if argument not provided).
+
+## grep.py
+- good job!
+- [bug:optional] CLI tools should be easy to chain (like: `command1 | command2 ... | command3`). Adding an extra line makes it weird. For example:
+  ```
+  # Here using original `grep`, we won't see any output. But using your `grep` we see two lines.
+  echo "123" | python3 grep.py 3 | python3 grep.py "made"
+  ```
+
+- [codestyle] You have duplicated code for `file` and `stdin` implementation, it can easily be de-duplicated since `stdin` is also a file.
+  ```python3
+  # Instead of 
+  if stdin:
+    for line in stdin:
+      ...
+      ...
+      ...
+
+  else:
+    file = open('...')
+    for line in file: # Notice that this loop is same as the `stdin` one
+      ...
+      ...
+      ...
+  ```
+
+  We can do
+  ```python3
+  if stdin:
+    file = stdin
+  else:
+    file = open("...")
+
+  for line in stdin:
+      ...
+      ...
+      ...
+
+  ```
+
+
+
+
 # 2024-03-25 (Review)
 - Messages marked as `bug:optional` are serious issues but not required to be fixed, you can ignore them.
 - Messages marked as `bug` are serious issues and needs to be fixed.
@@ -71,3 +124,4 @@ cat some_file | head
 
 ## tail.py
 - Same issue as head
+
